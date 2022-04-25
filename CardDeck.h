@@ -6,9 +6,7 @@
 #ifndef HW05_CARDDECK_H
 #define HW05_CARDDECK_H
 
-class CardDeck{
-private:
-    QList<Card*> Deck;
+class CardDeck: public QList<Card*>{
 public:
     CardDeck();
     CardHand deal(int handSize);

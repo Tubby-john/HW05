@@ -6,7 +6,11 @@
 #include "Card.h"
 
 int CardHand::getValue() {
-
+    int value;
+    foreach(Card* ch){
+        value += ch->getValue();
+    }
+    return value;
 }
 QString CardHand::toString() {
     QString value;

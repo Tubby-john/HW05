@@ -9,38 +9,33 @@
 CardDeck::CardDeck() {
     for(int suit = 0; suit < 3; suit++){
         for(int num = 0; num < 13; num++){
-            Deck.append(new Card(num, suit));
+           QList::append(new Card(num, suit));
         }
     }
 }
 
 CardHand CardDeck::deal(int handSize) {
     srandom(time(0));
-    QList<Card*> h;
-    for(int i = 0; i < handSize; i++){
-            int index = random()%handSize+1;
-            h.append(Deck[index]);
-            Deck.removeAt(index);
-    }
     CardHand hand;
-
-    return hand;
+    for(int i = 0; i < handSize;i++){
+        int index = random()%this->length();
+        hand.append(this->at(index));
+        this->removeAt(index);
+    }
 }
 
 QString CardDeck::toString() {
-    QString lastOfCards;
-    foreach(Card* cd, Deck){
-        lastOfCards.append(cd->toString());
+    
+    foreach(Card* card, this){
+
     }
-    return lastOfCards;
 }
 
 int CardDeck::getCardsLeft() {
-    return Deck.length();
+
 }
 
 void CardDeck::restoreDeck() {
-    Deck.clear();
-
+    qDeleteAll(this);
 }
 
