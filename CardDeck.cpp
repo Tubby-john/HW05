@@ -5,37 +5,45 @@
 #include "CardDeck.h"
 #include "CardHand.h"
 #include <cstdlib>
+#include <QTextStream>
+QTextStream cout(stdout);
 
 CardDeck::CardDeck() {
     for(int suit = 0; suit < 3; suit++){
         for(int num = 0; num < 13; num++){
-           QList::append(new Card(num, suit));
+            deck.append(Card(num, suit));
         }
     }
 }
 
 CardHand CardDeck::deal(int handSize) {
     srandom(time(0));
-    CardHand hand;
+    QList<Card> newHand;
     for(int i = 0; i < handSize;i++){
-        int index = random()%this->length();
-        hand.append(this->at(index));
-        this->removeAt(index);
+        int index = random()%deck.length()+1;
+        newHand.append(deck[index]);
+        deck.removeAt(index);
     }
 }
 
 QString CardDeck::toString() {
-    
-    foreach(Card* card, this){
-
+    QString cardsLeft;
+    foreach(Card card, deck){
+        cardsLeft.append(card.toString());
     }
+    return cardsLeft;
 }
 
 int CardDeck::getCardsLeft() {
-
+    return deck.length();
 }
 
 void CardDeck::restoreDeck() {
-    qDeleteAll(this);
+    deck.clear();
+    for(int suit = 0; suit < 3; suit++){
+        for(int num = 0; num < 13; num++){
+            deck.append(Card(num, suit));
+        }
+    }
 }
 

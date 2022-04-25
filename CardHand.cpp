@@ -7,15 +7,15 @@
 
 int CardHand::getValue() {
     int value;
-    foreach(Card* ch){
-        value += ch->getValue();
+    foreach(Card ch, hand){
+        value += ch.getValue();
     }
     return value;
 }
 QString CardHand::toString() {
     QString value;
-    foreach(Card* ch, hand){
-        value.append(ch->toString());
+    foreach(Card ch, hand){
+        value.append(ch.toString());
     }
     return value;
 }
