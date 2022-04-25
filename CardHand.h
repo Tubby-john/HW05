@@ -7,8 +7,12 @@
 
 #ifndef HW05_CARDHAND_H
 #define HW05_CARDHAND_H
-class CardHand: public QList<Card*> {
+class CardHand{
+private:
+    QList<Card> hand;
 public:
+    CardHand();
+    CardHand(QList<Card> newHand): hand(newHand){};
     int getValue();
     QString toString();
 };

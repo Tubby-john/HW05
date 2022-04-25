@@ -5,7 +5,7 @@
 #ifndef HW05_CARD_H
 #define HW05_CARD_H
 
-class Card{
+class Card : public QList {
 private:
     int m_FaceNbr;
     int m_SuitNbr;
